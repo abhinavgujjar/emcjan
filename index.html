@@ -1,12 +1,52 @@
-<html ng-app>
+<html ng-app="emcApp">
 <head>
 	<title>Angular Training</title>
 	<script src="bower_components/angular/angular.js"></script>
 </head>
 <body >
-	<div ></div>
-	<h1>{{'Hello' + 'World'}}</h1>
-	<h1>{{17 + 5}}</h1>
-	<h1>{{['good', 'bad', 'OK'][2] + 'Morning'}}</h1>
+	<div ng-controller="mainController" style="color:red">
+		<h1>Hello {{companyName}}</h1>
+		<h1>{{greeting}}  {{timeOfDay}}</h1>
+		<div ng-controller="secondController" style="color:blue">
+			<h1>Hello {{companyName}}, {{$parent.companyName}}</h1>
+			<h1>{{greeting}}  {{timeOfDay}}</h1>
+		</div>
+	</div>
+
+	<script>
+
+		var greeting = 'Good ';
+		//declaration of module
+		var app = angular.module('emcApp', []);
+
+		app.controller('secondController', function($scope){
+			$scope.companyName = 'PS Apps';
+		})
+
+		//reference modules
+		//var app = angular.module('emcApp');
+		app.controller('mainController', function($scope){
+			$scope.companyName = 'EMC2';
+
+			var hours  = (new Date()).getHours();
+			var timeOfDay = 'Morning';
+			if ( hours >= 12){
+				timeOfDay = 'Afternoon';
+			}
+
+			if ( hours >= 16){
+				timeOfDay = 'Evening';
+			}
+
+			if ( hours >= 21 ){
+				timeOfDay = 'Evening';
+			}
+
+			$scope.timeOfDay = timeOfDay;
+		})
+
+
+	</script>
 </body>
+
 </html>
