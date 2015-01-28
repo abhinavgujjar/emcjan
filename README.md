@@ -10,3 +10,4 @@ Plunks
 
 	* data-binding : http://plnkr.co/edit/L5zlGJ
 	* exercise : http://plnkr.co/edit/IHcvfSijVKoJ6Q4fcKp8?p=preview
+					http://plnkr.co/edit/KCemDQ?p=preview
