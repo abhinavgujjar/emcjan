@@ -1,16 +1,24 @@
-<html ng-app="emcApp">
+<html >
 <head>
 	<title>Angular Training</title>
 	<script src="bower_components/angular/angular.js"></script>
 </head>
 <body >
-	<div ng-controller="mainController" style="color:red">
-		<h1>Hello {{companyName}}</h1>
-		<h1>{{greeting}}  {{timeOfDay}}</h1>
-		<div ng-controller="secondController" style="color:blue">
-			<h1>Hello {{companyName}}, {{$parent.companyName}}</h1>
-			<h1>{{greeting}}  {{timeOfDay}}</h1>
+	<div ng-app="emcApp">
+		<div>
+			<a href='' >angular href</a>
 		</div>
+		<div ng-controller="mainController" style="color:red">
+			<h1>Hello <span ng-bind="companyName"></span></h1>
+			<h1>{{greeting}}  {{timeOfDay}}</h1>
+			<div ng-controller="secondController" style="color:blue">
+				<h1>Hello {{companyName}}, {{$parent.companyName}}</h1>
+				<h1>{{greeting}}  {{timeOfDay}}</h1>
+			</div>
+		</div>
+	</div>
+	<div>
+		<a href='' >angular href</a>
 	</div>
 
 	<script>
