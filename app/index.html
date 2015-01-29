@@ -2,13 +2,31 @@
 <head>
 	<title>Angular Training</title>
 	<script src="bower_components/angular/angular.js"></script>
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"></head>
+
 </head>
-<body ng-controller="mainController">
-	<div >
+<body ng-controller="mainController" class="container">
+	<div class="row">
 		<div >
 			<h1>Hello {{companyName}} | {{greeting}}  {{timeOfDay}}</h1>
 		</div>
 	</div>
+	<div class="row">
+		
+	</div>
+	<div class="row">
+
+		<div ng-repeat="hotel in hotels" class="row well well-sm">
+			<img class="col-md-2 col-sm-8 col-xs-12" ng-src="{{hotel.img}}">
+			<div class="col-md-8">
+				<div><h4>{{hotel.name}}</h4></div>
+				<div class="visible-md visible-lg small">{{hotel.description}}</div>
+			</div>
+			<div class="col-md-2 text-center"><h2>{{hotel.price}}</h2></div>
+		</div>
+
+	</div>
+
 	<script src="app.js"></script>
 </body>
 
