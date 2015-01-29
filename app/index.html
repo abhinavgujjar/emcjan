@@ -5,15 +5,16 @@
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"></head>
 
 </head>
-<body ng-controller="mainController" class="container">
-	<div class="row">
+<body  class="container">
+	<div class="row" ng-controller="greetingController">
 		<div >
 			<h1>Hello {{companyName}} | {{greeting}}  {{timeOfDay}}</h1>
 		</div>
 	</div>
+	<div ng-controller="listingController">
 	<div class="row">
 		<div class="col-md-3">
-			<input type="text" class="form-control" placeholder="search" ng-model="searchTerm" />	
+			<input type="text" class="form-control" placeholder="search" ng-model="searchTerm" />
 		</div>
 		<div class="col-md-3" >
 			<select ng-model="limitItems" class="form-control">
@@ -23,33 +24,78 @@
 			</select>
 		</div>
 		<div class="col-md-3">
-			<input type="radio" ng-model="orderTerm" value="price" />Price
-			<input type="radio" ng-model="orderTerm" value="name" />Name
+			<input type="radio" ng-model="orderTerm" value="price" />
+			Price
+			<input type="radio" ng-model="orderTerm" value="name" />
+			Name
 		</div>
 	</div>
 	<hr/>
 	<div class="row">
+		<div class="col-md-10">
+			<div ng-repeat="hotel in hotels | filter: searchTerm | limitTo : limitItems| orderBy : orderTerm" class="row well well-sm">
+				<div class="col-md-1">
+					<div class="text-center">
+						<button class="btn btn-default" ng-click="upVote(hotel)">
+							<span class="glyphicon glyphicon-chevron-up text-success"></span>
+						</button>
+					</div>
+					<div class="text-center">
+						<h4>{{hotel.rating}}</h4>
+					</div>
+					<div class="text-center">
+						<button class="btn btn-default" ng-click="downVote(hotel)">
+							<span class="glyphicon glyphicon-chevron-down text-danger"></span>
+						</button>
+					</div>
 
-		<div ng-repeat="hotel in hotels | filter: searchTerm | limitTo : limitItems| orderBy : orderTerm" class="row well well-sm">
-			<img class="col-md-2 col-sm-8 col-xs-12" ng-src="{{hotel.img}}">
-			<div class="col-md-8">
-				<div>
-				<h4>{{hotel.name}} 
-
-				<span class="glyphicon glyphicon-star text-primary" ng-repeat="review in hotel.rating | numberToArray"></span>
-
-				</h4>
+				</div>
+				<img class="col-md-2 col-sm-8 col-xs-12" ng-src="{{hotel.img}}">
+				<div class="col-md-7">
+					<div>
+						<h4>
+							{{hotel.name}}
+							<!-- <span class="glyphicon glyphicon-star text-primary" ng-repeat="review in hotel.rating | numberToArray"></span>
+						-->
+					</h4>
 
 				</div>
 				<div class="text-muted">{{hotel.location | na | indianize}}</div>
 				<div class="visible-md visible-lg small">{{hotel.description | na}}</div>
 			</div>
-			<div class="col-md-2 text-center"><h2>{{hotel.price | currency : 'INR '}}</h2></div>
+			<div class="col-md-2 text-center">
+				<h2>{{hotel.price | currency : 'INR '}}</h2>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-2" ng-controller="addController">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Quick Add</div>
+			<div class="panel-body">
+				<div class="row">
+					<input	type="text" class="form-control" ng-model="newHotel.name" />
+				</div>
+				<div class="row">
+					<input	type="number" class="form-control" ng-model="newHotel.price" />
+				</div>
+				<div>
+					<button class="btn btn-success" ng-click="addHotel(newHotel)">Add</button>
+				</div>
+			</div>
 		</div>
 
 	</div>
 
-	<script src="app.js"></script>
+	</div>
+
+</div>
+
+<script src="app.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/controllers/greetingController.js"></script>
+<script src="js/controllers/listingController.js"></script>
+<script src="js/controllers/addController.js"></script>
 </body>
 
 </html>
