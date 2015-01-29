@@ -1,5 +1,5 @@
 
-app.controller('listingController', function($scope){
+app.controller('listingController', function($scope, uiConfig){
 	$scope.upVote = function(hotel) {
 		hotel.rating++;
 	}
@@ -8,7 +8,13 @@ app.controller('listingController', function($scope){
 		hotel.rating--;
 	}
 
-	$scope.limitItems = 10;
+	$scope.toggleMore = function(item){
+		item.showMore = !item.showMore;
+	}
+
+	$scope.descLength = uiConfig.descLength;
+
+	$scope.limitItems = uiConfig.limit;
 
 	$scope.hotels = [{
 		"name": "Golden Palms Hotel & Spa",

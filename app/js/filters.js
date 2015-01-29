@@ -18,11 +18,12 @@ app.filter('na', function() {
 app.filter('numberToArray', function() {
 	return function(input) {
 
-		input = input / 2;
-		var empty = [];
-		for (var i = 1; i <= input; i++) {
-			empty.push({});
-		}
-		return empty;
+		
+		return new Array(input);
+		//input = input / 2;
+		// for (var i = 1; i <= input; i++) {
+		// 	empty.push({});
+		// }
+		//return empty;
 	}
 })
