@@ -12,7 +12,6 @@
 		</div>
 	</div>
 	<hr/>
-	<h1 ng-controller="detailsController">{{descLength}}</h1>
 	<div ng-controller="listingController">
 		<div class="row">
 			<div class="col-md-3">
@@ -38,7 +37,7 @@
 				<div ng-repeat="hotel in hotels | filter: searchTerm | limitTo : limitItems| orderBy : orderTerm" class="row well well-sm">
 					<div class="col-md-1">
 						<div class="text-center">
-							<button class="btn btn-default" ng-click="upVote(hotel)">
+							<button class="btn btn-default" ng-click="votingService.upVote(hotel)">
 								<span class="glyphicon glyphicon-chevron-up text-success"></span>
 							</button>
 						</div>
@@ -46,7 +45,7 @@
 							<h4>{{hotel.rating}}</h4>
 						</div>
 						<div class="text-center">
-							<button class="btn btn-default" ng-click="downVote(hotel)">
+							<button class="btn btn-default" ng-click="votingService.downVote(hotel)">
 								<span class="glyphicon glyphicon-chevron-down text-danger"></span>
 							</button>
 						</div>
@@ -65,10 +64,10 @@
 						<div class="text-muted">{{hotel.location | na | indianize}}</div>
 						<div class="visible-md visible-lg small">
 
-						<span ng-hide="hotel.showMore">{{hotel.description | na | limitTo : descLength}}</span>
-						<span ng-show="hotel.showMore">{{hotel.description | na}}</span>
-							<a href="" ng-click="toggleMore(hotel)" ng-show="hotel.description.length > descLength && !hotel.showMore" >... more</a>
-							<a href="" ng-click="toggleMore(hotel)" ng-show="hotel.showMore" > less</a>
+							<span ng-hide="hotel.showMore">{{hotel.description | na | limitTo : descLength}}</span>
+							<span ng-show="hotel.showMore">{{hotel.description | na}}</span>
+							<a href="" ng-click="toggleMore(hotel)" ng-show="hotel.description.length >descLength && !hotel.showMore" >... more</a>
+							<a href="" ng-click="toggleMore(hotel)" ng-show="hotel.showMore" >less</a>
 						</div>
 					</div>
 					<div class="col-md-2 text-center">
@@ -105,6 +104,8 @@
 	<script src="js/controllers/listingController.js"></script>
 	<script src="js/controllers/detailsController.js"></script>
 	<script src="js/controllers/addController.js"></script>
+	<script src="js/services/votingService.js"></script>
+	<script src="js/services/timeCalculator.js"></script>
 </body>
 
 </html>

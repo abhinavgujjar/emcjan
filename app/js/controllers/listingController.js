@@ -1,12 +1,7 @@
 
-app.controller('listingController', function($scope, uiConfig){
-	$scope.upVote = function(hotel) {
-		hotel.rating++;
-	}
-
-	$scope.downVote = function(hotel) {
-		hotel.rating--;
-	}
+app.controller('listingController', function($scope, uiConfig, votingService){
+	
+	$scope.votingService = votingService;
 
 	$scope.toggleMore = function(item){
 		item.showMore = !item.showMore;
