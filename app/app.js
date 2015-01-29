@@ -24,6 +24,8 @@ app.controller('mainController', function($scope) {
 
 	$scope.timeOfDay = timeOfDay;
 
+	$scope.limitItems = 10;
+
 	$scope.hotels = [{
 		"name": "Golden Palms Hotel & Spa",
 		"img": "http://i.imgur.com/dmlhhkU.jpg",

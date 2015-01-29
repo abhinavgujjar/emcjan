@@ -12,11 +12,25 @@
 		</div>
 	</div>
 	<div class="row">
-		
+		<div class="col-md-3">
+			<input type="text" class="form-control" placeholder="search" ng-model="searchTerm" />	
+		</div>
+		<div class="col-md-3" >
+			<select ng-model="limitItems" class="form-control">
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="50">50</option>
+			</select>
+		</div>
+		<div class="col-md-3">
+			<input type="radio" ng-model="orderTerm" value="price" />Price
+			<input type="radio" ng-model="orderTerm" value="name" />Name
+		</div>
 	</div>
+	<hr/>
 	<div class="row">
 
-		<div ng-repeat="hotel in hotels" class="row well well-sm">
+		<div ng-repeat="hotel in hotels | filter: searchTerm | limitTo : limitItems| orderBy : orderTerm" class="row well well-sm">
 			<img class="col-md-2 col-sm-8 col-xs-12" ng-src="{{hotel.img}}">
 			<div class="col-md-8">
 				<div><h4>{{hotel.name}}</h4></div>
