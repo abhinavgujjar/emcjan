@@ -33,10 +33,18 @@
 		<div ng-repeat="hotel in hotels | filter: searchTerm | limitTo : limitItems| orderBy : orderTerm" class="row well well-sm">
 			<img class="col-md-2 col-sm-8 col-xs-12" ng-src="{{hotel.img}}">
 			<div class="col-md-8">
-				<div><h4>{{hotel.name}}</h4></div>
-				<div class="visible-md visible-lg small">{{hotel.description}}</div>
+				<div>
+				<h4>{{hotel.name}} 
+
+				<span class="glyphicon glyphicon-star text-primary" ng-repeat="review in hotel.rating | numberToArray"></span>
+
+				</h4>
+
+				</div>
+				<div class="text-muted">{{hotel.location | na | indianize}}</div>
+				<div class="visible-md visible-lg small">{{hotel.description | na}}</div>
 			</div>
-			<div class="col-md-2 text-center"><h2>{{hotel.price}}</h2></div>
+			<div class="col-md-2 text-center"><h2>{{hotel.price | currency : 'INR '}}</h2></div>
 		</div>
 
 	</div>
