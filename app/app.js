@@ -1,12 +1,17 @@
 //declaration of module
-var app = angular.module('emcApp', []);
+var app = angular.module('emcApp', ['ngRoute']);
 
-//services
-//	value
-//	service / factory
-//	provider
-// 
+app.config(function($routeProvider){
 
+	$routeProvider.when('/home', {
+		templateUrl : 'partials/home.html'
+	});
+
+	$routeProvider.when('/list', {
+		templateUrl : 'partials/listing.html'
+	});
+
+})
 //defined a value service
 app.value('uiConfig', {
 	descLength: 50,
