@@ -8,7 +8,19 @@ angular.module('emcApp').controller('addController', function($scope) {
 
 	$scope.tab = 'basic';
 
-	var images = [
+	$scope.states = ['karnataka', 'goa', 'tamil nadu'];
+
+	$scope.$watch('selectedState', function(newValue, oldValue){
+		$scope.cities = stateCities[newValue];
+	})
+
+	var stateCities = {
+		'karnataka': ['bangalore', 'hubli', 'mysore'],
+		'goa': ['panjim', 'madgao', 'kanakona'],
+		'tamil nadu': ['chennai', 'selam', 'ooty']
+	};
+
+	$scope.images = [
 		"dmlhhkU.jpg",
 		"S54M0bj.jpg",
 		"hZg00lq.jpg",
@@ -28,7 +40,32 @@ angular.module('emcApp').controller('addController', function($scope) {
 		"G9qKSJU.jpg",
 		"FfNahV4.jpg",
 		"OGLIG3N.jpg"
-	]
+	];
+
+	$scope.hotelImage = $scope.images[0];
+
+	var index = 0;
+
+	$scope.prev = function() {
+		index--;
+		if (index == 0) {
+			index = $scope.images.length;
+		}
+
+		$scope.hotelImage = $scope.images[index];
+	}
+
+	$scope.next = function() {
+		index++;
+
+		if (index > $scope.images.length) {
+			index = 0;
+		}
+
+		$scope.hotelImage = $scope.images[index];
+	}
+
+
 
 	$scope.changeTab = function(name) {
 		$scope.tab = name;

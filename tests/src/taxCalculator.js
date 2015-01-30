@@ -1,7 +1,7 @@
 var RealRateProvider = function(){
 	return {
 		getRate : function(){
-			
+			//htttp calll to out side service to get rate
 		}
 	}
 }
