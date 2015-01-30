@@ -1,4 +1,16 @@
 <div >
+	<panel heading="Quick Add" header-class="primary" >
+		<div class="row">
+			<input	type="text" class="form-control" ng-model="newHotel.name" />
+		</div>
+		<div class="row">
+			<input	type="number" class="form-control" ng-model="newHotel.price" />
+		</div>
+		<div>
+			<button class="btn btn-success" ng-click="addHotel(newHotel)">Add</button>
+		</div>
+	</panel>
+<!-- 
 	<div class="panel panel-primary">
 		<div class="panel-heading">Quick Add</div>
 		<div class="panel-body">
@@ -12,6 +24,6 @@
 				<button class="btn btn-success" ng-click="addHotel(newHotel)">Add</button>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 </div>

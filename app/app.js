@@ -18,6 +18,18 @@ app.directive('favs', function(){
 })
 
 
+app.directive('panel', function(){
+	return {
+		restrict : 'E',
+		transclude : true,
+		templateUrl : 'partials/panel.html',
+		scope : {
+			heading : '@',
+			headerClass : '@'
+		}
+	}
+})
+
 
 app.directive('preview', function(){
 	return {
