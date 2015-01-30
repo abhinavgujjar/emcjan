@@ -6,32 +6,76 @@
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"></head>
 
 </head>
-<body  class="container">
+<body  class="container-fluid">
 	<div>
-		<ul class="nav nav-pills">
-			<li><a href="#/home">Home</a></li>
-			<li><a href="#/list">Listing</a></li>
-			<li><a href="#/new">New</a></li>
-		</ul>
-	</div>
-	<div class="row" ng-controller="greetingController">
-		<div >
-			<h1>Hello {{companyName}} | {{greeting}}  {{timeOfDay}} | <small>{{daysLeft}} seconds to go!!</small></h1>
+		<div>
+			<ul class="nav nav-pills">
+				<li>
+					<a href="#/home">Home</a>
+				</li>
+				<li>
+					<a href="#/list">Listing</a>
+				</li>
+				<li>
+					<a href="#/new">New</a>
+				</li>
+			</ul>
+		</div>
+		<div class="row" ng-controller="greetingController">
+			<div >
+				<h1>
+					Hello {{companyName}} | {{greeting}}  {{timeOfDay}} |
+					<small>{{daysLeft}} seconds to go!!</small>
+				</h1>
+			</div>
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="col-md-9" >
+				<ng-view></ng-view>
+			</div>
+			<div class="col-md-3" >
+				<div ng-controller="addController">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Quick Add</div>
+						<div class="panel-body">
+							<div class="row">
+								<input	type="text" class="form-control" ng-model="newHotel.name" />
+							</div>
+							<div class="row">
+								<input	type="number" class="form-control" ng-model="newHotel.price" />
+							</div>
+							<div>
+								<button class="btn btn-success" ng-click="addHotel(newHotel)">Add</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<br/>
+				<br/>
+				<div ng-controller="favsController">
+					<div class="well">
+						<ul>
+							<li ng-repeat="item in favs">{{item.name}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<hr/>
-	<ng-view></ng-view>
-
-	
 
 	<script src="app.js"></script>
 	<script src="js/filters.js"></script>
 	<script src="js/controllers/greetingController.js"></script>
 	<script src="js/controllers/listingController.js"></script>
 	<script src="js/controllers/detailsController.js"></script>
+	<script src="js/controllers/favsController.js"></script>
 	<script src="js/controllers/addController.js"></script>
 	<script src="js/services/votingService.js"></script>
 	<script src="js/services/timeCalculator.js"></script>
+	<script src="js/services/favsService.js"></script>
 </body>
 
 </html>

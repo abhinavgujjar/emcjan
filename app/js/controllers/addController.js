@@ -1,6 +1,6 @@
 //reference modules
 //var app = angular.module('emcApp');
-angular.module('emcApp').controller('addController', function($scope) {
+angular.module('emcApp').controller('addController', function($scope, $http, $location) {
 
 	$scope.hotel = {
 
@@ -10,7 +10,7 @@ angular.module('emcApp').controller('addController', function($scope) {
 
 	$scope.states = ['karnataka', 'goa', 'tamil nadu'];
 
-	$scope.$watch('selectedState', function(newValue, oldValue){
+	$scope.$watch('selectedState', function(newValue, oldValue) {
 		$scope.cities = stateCities[newValue];
 	})
 
@@ -21,28 +21,28 @@ angular.module('emcApp').controller('addController', function($scope) {
 	};
 
 	$scope.images = [
-		"dmlhhkU.jpg",
-		"S54M0bj.jpg",
-		"hZg00lq.jpg",
-		"1jD7lgN.jpg",
-		"U0KoJxh.jpg",
-		"amBtxWl.jpg",
-		"QhVORNH.jpg",
-		"QhVORNH.jpg",
-		"BIBuk43.jpg",
-		"QezaFg8.jpg",
-		"mOja8KJ.jpg",
-		"7lSnfvh.jpg",
-		"Fq4cFeQ.jpg",
-		"3P9IDTF.jpg",
-		"QhNZdjf.jpg",
-		"o3sfWer.jpg",
-		"G9qKSJU.jpg",
-		"FfNahV4.jpg",
-		"OGLIG3N.jpg"
+		"http://i.imgur.com/dmlhhkU.jpg",
+		"http://i.imgur.com/S54M0bj.jpg",
+		"http://i.imgur.com/hZg00lq.jpg",
+		"http://i.imgur.com/1jD7lgN.jpg",
+		"http://i.imgur.com/U0KoJxh.jpg",
+		"http://i.imgur.com/amBtxWl.jpg",
+		"http://i.imgur.com/QhVORNH.jpg",
+		"http://i.imgur.com/QhVORNH.jpg",
+		"http://i.imgur.com/BIBuk43.jpg",
+		"http://i.imgur.com/QezaFg8.jpg",
+		"http://i.imgur.com/mOja8KJ.jpg",
+		"http://i.imgur.com/7lSnfvh.jpg",
+		"http://i.imgur.com/Fq4cFeQ.jpg",
+		"http://i.imgur.com/3P9IDTF.jpg",
+		"http://i.imgur.com/QhNZdjf.jpg",
+		"http://i.imgur.com/o3sfWer.jpg",
+		"http://i.imgur.com/G9qKSJU.jpg",
+		"http://i.imgur.com/FfNahV4.jpg",
+		"http://i.imgur.com/OGLIG3N.jpg"
 	];
 
-	$scope.hotelImage = $scope.images[0];
+	$scope.hotel.img = $scope.images[0];
 
 	var index = 0;
 
@@ -52,7 +52,7 @@ angular.module('emcApp').controller('addController', function($scope) {
 			index = $scope.images.length;
 		}
 
-		$scope.hotelImage = $scope.images[index];
+		$scope.hotel.img = $scope.images[index];
 	}
 
 	$scope.next = function() {
@@ -62,7 +62,7 @@ angular.module('emcApp').controller('addController', function($scope) {
 			index = 0;
 		}
 
-		$scope.hotelImage = $scope.images[index];
+		$scope.hotel.img = $scope.images[index];
 	}
 
 
@@ -83,8 +83,21 @@ angular.module('emcApp').controller('addController', function($scope) {
 	}
 
 	$scope.addHotel = function(hotel) {
-		var copy = angular.copy(hotel);
-		$scope.hotels.push(copy);
+
+		$http.post('https://api.parse.com/1/classes/hnc', hotel, {
+				headers: {
+					'X-Parse-Application-Id': 'KWQ0rGbTccdhYd4a0Cawy21wpi94GBdh9VjnQsyZ',
+					'X-Parse-REST-API-Key': 'M0j6NQBiPVgdOnuv5811fbgTojTAVqo6XjF1E3Pd',
+				}
+			})
+			.success(function(data, status, headers, config) {
+				alert('YAAY! going to listing now');
+				$location.url('list');
+
+				//emit an event
+				$scope.hotels.push(hotel); 
+				//$scope.$emit('hotelAdded', hotel);
+			});
 	}
 
 
