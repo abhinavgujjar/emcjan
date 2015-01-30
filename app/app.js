@@ -31,6 +31,21 @@ app.directive('panel', function(){
 })
 
 
+app.directive('zoom', function(){
+	return {
+		restrict : 'A',
+		link : function(scope, element, attrs, ctrl){
+
+			element.on('mouseenter', function(){
+				element.css({
+					"font-size" : "42px"
+				})
+			})
+		}
+	}
+})
+
+
 app.directive('preview', function(){
 	return {
 		restrict : 'E',
@@ -48,10 +63,31 @@ app.directive('preview', function(){
 app.directive('hotelItem', function(){
 	return {
 		restrict : 'E',
-		templateUrl: 'partials/hotelItem.html'
+		templateUrl: 'partials/hotelItem.html',
 	}
 })
 
+
+app.directive('onlyEven', function(){
+	return{
+		restrict : 'A',
+		require : 'ngModel',
+		link : function(scope, element, attrs, ctrl){
+
+			ctrl.$parsers.unshift(checkForEven)
+
+			function checkForEven(viewValue) {
+				if (parseInt(viewValue) % 2 === 0) {
+					ctrl.$setValidity('evenNumber', true);
+				} else {
+					ctrl.$setValidity('evenNumber', false);
+				}
+				return viewValue;
+			}
+
+		}
+	}
+})
 
 app.directive('quickAdd', function(){
 	return {
