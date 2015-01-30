@@ -18,6 +18,9 @@
 		</div>
 	</div>
 	<hr/>
+	<div ng-show="error">
+		<h1 class="text-danger">{{error}}</h1>
+	</div>
 	<div class="row">
 		<div ng-repeat="hotel in hotels | filter: searchTerm | limitTo : limitItems| orderBy : orderTerm" class="row well well-sm">
 			<div class="col-md-1">

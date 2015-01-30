@@ -1,6 +1,6 @@
 //reference modules
 //var app = angular.module('emcApp');
-angular.module('emcApp').controller('addController', function($scope, $http, $location) {
+angular.module('emcApp').controller('addController', function($scope, $http, $location, hotelsData) {
 
 	$scope.hotel = {
 
@@ -84,20 +84,10 @@ angular.module('emcApp').controller('addController', function($scope, $http, $lo
 
 	$scope.addHotel = function(hotel) {
 
-		$http.post('https://api.parse.com/1/classes/hnc', hotel, {
-				headers: {
-					'X-Parse-Application-Id': 'KWQ0rGbTccdhYd4a0Cawy21wpi94GBdh9VjnQsyZ',
-					'X-Parse-REST-API-Key': 'M0j6NQBiPVgdOnuv5811fbgTojTAVqo6XjF1E3Pd',
-				}
-			})
-			.success(function(data, status, headers, config) {
-				alert('YAAY! going to listing now');
-				$location.url('list');
+		hotelsData.addHotel(hotel).then(function() {
+			$location.url('list');
+		})
 
-				//emit an event
-				$scope.hotels.push(hotel); 
-				//$scope.$emit('hotelAdded', hotel);
-			});
 	}
 
 
