@@ -1,0 +1,90 @@
+<div >
+	<style type="text/css">
+	input.ng-invalid.ng-dirty {
+		background-color: pink
+	}
+	
+	input.ng-valid.ng-dirty {
+		border-color: darkgreen;
+		border-width: 2px
+	}
+
+	input.ng-invalid.ng-pristine {
+		border-color: pink;
+		border-width: 2px
+
+	}
+
+	input.ng-invalid-max {
+		background-color: yellow !important;
+	}
+
+	</style>
+	<div class="col-md-5 ">
+		<ng-form name="newHotelForm">
+			<ul class="nav nav-tabs">
+				<li ng-class="{'active' : tab === 'basic'}">
+					<a href="#" >Basic</a>
+				</li>
+				<li ng-class="{'active' : tab === 'extra'}">
+					<a href="#" >More Info</a>
+				</li>
+				<li ng-class="{'active' : tab === 'comments'}">
+					<a href="#" >Comments</a>
+				</li>
+			</ul>
+
+			<ng-form name="basicDetails" ng-show="tab === 'basic'">
+				<div class="form-group">
+					<label >Name</label>
+					<input type="text" minLength="4" ng-model="hotel.name" class="form-control" placeholder="Enter name of hotel" required/>
+				</div>
+				<div class="form-group">
+					<label >Mobile</label>
+					<input type="text" ng-pattern="/^[789]\d{9}$/" ng-model="hotel.mobile" class="form-control" placeholder="Enter mobile" required/>
+				</div>
+				<div class="form-group">
+					<label >Price</label>
+					<input type="number" min="2000" max="60000" class="form-control" ng-model="hotel.price"  placeholder="Daily Rate" name="vName" />
+					<div class="text-muted text-warning" ng-show="newHotelForm.vName.$invalid">{{newHotelForm.vName.$viewValue}} is not valid</div>
+				</div>
+				<button ng-disabled="basicDetails.$invalid" ng-click="changeTab('extra')" class="btn btn-warning pull-right">Next</button>
+
+			</ng-form>
+			<ng-form name="extraDetails" ng-show="tab === 'extra'">
+				<div class="form-group">
+					<label >Location</label>
+					<input type="text" ng-model="hotel.location" required class="form-control"  placeholder="enter city" />
+				</div>
+				<div class="form-group">
+					<label >Description</label>
+					<textarea ng-model="hotel.description" class="form-control"></textarea>
+				</div>
+				<button ng-disabled="extraDetails.$invalid" ng-click="changeTab('comments')" class="btn btn-warning pull-right">add comments</button>
+			</ng-form>
+			<ng-form ng-show="tab==='comments'">
+				<div >
+					Comments
+					<div ng-repeat="comment in hotel.comments" class="well well-sm">{{comment}}</div>
+					<div ng-show="showEntry">
+						<div>
+							<textarea class="form-control" ng-model="comment"></textarea>
+						</div>
+						<div class="pull-right">
+							<button ng-click="addComment(comment)" class="btn btn-success">Save</button>
+						</div>
+					</div>
+					<br/>
+					<br/>
+					<div>
+						<button class="btn btn-primary" ng-click="showEntry = true">Add New Comment</button>
+					</div>
+
+				</div>
+			</ng-form>
+			<button ng-disabled="newHotelForm.$invalid" ng-click="addHotel(hotel)" class="btn btn-primary pull-left">Submit</button>
+		</ng-form>
+	</div>
+
+	<div class="col-md-3">{{hotel}}</div>
+</div>

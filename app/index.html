@@ -7,6 +7,13 @@
 
 </head>
 <body  class="container">
+	<div>
+		<ul class="nav nav-pills">
+			<li><a href="#/home">Home</a></li>
+			<li><a href="#/list">Listing</a></li>
+			<li><a href="#/new">New</a></li>
+		</ul>
+	</div>
 	<div class="row" ng-controller="greetingController">
 		<div >
 			<h1>Hello {{companyName}} | {{greeting}}  {{timeOfDay}}</h1>
@@ -14,7 +21,7 @@
 	</div>
 	<hr/>
 	<ng-view></ng-view>
-	
+
 	
 
 	<script src="app.js"></script>

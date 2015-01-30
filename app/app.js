@@ -11,6 +11,15 @@ app.config(function($routeProvider){
 		templateUrl : 'partials/listing.html'
 	});
 
+	$routeProvider.when('/new', {
+		templateUrl : 'partials/new.html',
+		controller : 'addController'
+	});
+
+	$routeProvider.otherwise({
+		redirectTo: '/home'
+	});
+
 })
 //defined a value service
 app.value('uiConfig', {
