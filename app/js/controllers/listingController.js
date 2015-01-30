@@ -18,12 +18,15 @@ app.controller('listingController', function($scope, uiConfig, votingService, fa
 
 	$scope.limitItems = uiConfig.limit;
 
+	$scope.loading = true;
 	var promise = hotelsData.getHotels();
 
 	promise.then(function(hotels){
 		$scope.hotels = hotels;
+		$scope.loading = false;
 	}, function(error){
 		$scope.error = error;
+		$scope.loading = false;
 	})
 
 
