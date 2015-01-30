@@ -25,84 +25,18 @@
 		<div ng-show="error" class="row">
 			<h1 class="text-danger">{{error}}</h1>
 		</div>
-		
-			<div ng-repeat="hotel in hotels | filter: searchTerm | limitTo : limitItems| orderBy : orderTerm" class="row well well-sm">
-				<div class="col-md-1">
-					<div class="text-center">
-						<button class="btn btn-default" ng-click="votingService.upVote(hotel)">
-							<span class="glyphicon glyphicon-chevron-up text-success"></span>
-						</button>
-					</div>
-					<div class="text-center">
-						<h4>{{hotel.rating}}</h4>
-					</div>
-					<div class="text-center">
-						<button class="btn btn-default" ng-click="votingService.downVote(hotel)">
-							<span class="glyphicon glyphicon-chevron-down text-danger"></span>
-						</button>
-					</div>
 
-				</div>
-				<img class="col-md-2 col-sm-8 col-xs-12" ng-src="{{hotel.img}}">
-				<div class="col-md-7">
-					<div class="col-md-10">
-						<div>
-							<h4>
-								{{hotel.name}}
-								<span class="glyphicon glyphicon-star text-primary" ng-repeat="x in hotel.rating | numberToArray track by $index"></span>
-
-							</h4>
-
-						</div>
-						<div class="text-muted">{{hotel.location | na | indianize}}</div>
-						<div class="visible-md visible-lg small">
-
-							<span ng-hide="hotel.showMore">{{hotel.description | na | limitTo : descLength}}</span>
-							<span ng-show="hotel.showMore">{{hotel.description | na}}</span>
-							<a href="" ng-click="toggleMore(hotel)" ng-show="hotel.description.length >descLength && !hotel.showMore" >... more</a>
-							<a href="" ng-click="toggleMore(hotel)" ng-show="hotel.showMore" >less</a>
-						</div>
-					</div>
-					<div class="col-md-2">
-						<button class="btn btn-sm">
-							<span class="glyphicon glyphicon-star" ng-click="addToFav(hotel)"></span>
-						</button>
-					</div>
-
-				</div>
-				<div class="col-md-2 text-center">
-					<h3>{{hotel.price }}</h3>
-				</div>
-			</div>
+		<div ng-repeat="hotel in hotels | filter: searchTerm | limitTo : limitItems| orderBy : orderTerm" class="row well well-sm">
+			<hotel-item></hotel-item>
+		</div>
 
 	</div>
 	<div class="col-md-3" >
-		<div ng-controller="addController">
-			<div class="panel panel-primary">
-				<div class="panel-heading">Quick Add</div>
-				<div class="panel-body">
-					<div class="row">
-						<input	type="text" class="form-control" ng-model="newHotel.name" />
-					</div>
-					<div class="row">
-						<input	type="number" class="form-control" ng-model="newHotel.price" />
-					</div>
-					<div>
-						<button class="btn btn-success" ng-click="addHotel(newHotel)">Add</button>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
+		<quick-add></quick-add>
 		<br/>
 		<br/>
-		<div ng-controller="favsController">
-			<div class="well">
-				<ul>
-					<li ng-repeat="item in favs track by $index">{{item.name}}</li>
-				</ul>
-			</div>
+		<div >
+			<favs></favs>
 		</div>
 	</div>
 

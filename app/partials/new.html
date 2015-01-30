@@ -76,7 +76,8 @@
 				</div>
 				<div class="form-group">
 					<label >Description</label>
-					<textarea ng-model="hotel.description" class="form-control"></textarea>
+					<preview text="hotel.description" rows="10"></preview>
+
 				</div>
 				<button ng-disabled="extraDetails.$invalid" ng-click="changeTab('comments')" class="btn btn-warning pull-right">add comments</button>
 			</ng-form>
